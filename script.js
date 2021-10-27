@@ -1,18 +1,25 @@
-// Define a model for linear regression.
-const model = tf.sequential();
-model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+console.log(tf.version);
 
-model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+//tensor example
+const ex_tensor = tf.tensor([[["rank"],["one"],["tensor"]],[["hello"],["hey"],["hi"]]]);
+console.log("shape:",ex_tensor.shape," data type:", ex_tensor.dtype, " rank:", ex_tensor.rank);
 
-// Generate some synthetic data for training.
-const xs = tf.tensor2d([1, 2, 3, 4], [4, 1]);
-const ys = tf.tensor2d([1, 3, 5, 7], [4, 1]);
+ex_tensor.print();
 
-// Train the model using the data.
-model.fit(xs, ys, {epochs: 10}).then(() => {
-  // Use the model to do inference on a data point the model hasn't seen before:
-  model.predict(tf.tensor2d([5], [1, 1])).print();
-  // Open the browser devtools to see the output
-});
-  
-  
+//changing shape
+const tensor1 = tf.ones([1,2,3]); // ones creates a 1 tensor
+const tensor2 = tf.reshape(tensor1,[3,2,1]); //3x2x1 = 1x2x3
+const tensor3 = tf.reshape(tensor1,[-1]);//-1 ==> Automatically defines the dimension should be
+const tensor4 = tf.reshape(tensor1,[2,-1]);
+tensor1.print();
+tensor2.print();
+tensor3.print();
+tensor4.print();
+
+//models
+const model = tf.sequential({
+    layers: [
+      tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),
+      tf.layers.dense({units: 10, activation: 'softmax'}),
+    ]
+   });
