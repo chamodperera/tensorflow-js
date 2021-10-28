@@ -16,10 +16,3 @@ tensor2.print();
 tensor3.print();
 tensor4.print();
 
-//models
-const model = tf.sequential({
-    layers: [
-      tf.layers.dense({inputShape: [784], units: 32, activation: 'relu'}),
-      tf.layers.dense({units: 10, activation: 'softmax'}),
-    ]
-   });
