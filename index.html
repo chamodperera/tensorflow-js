@@ -31,6 +31,24 @@
             }).catch(err => {
                 console.log(err);
             })
+
+//create data
+let data = {"Name":["Apples", "Mango", "Banana", undefined],
+            "Count": [NaN, 5, NaN, 10], 
+            "Price": [200, 300, 40, 250]}        
+let df = new dfd.DataFrame(data)
+let df_filled = df.fillna({columns: ["Name", "Count"], values: ["Apples", 
+df["Count"].mean()]})
+df_filled.print()
+
+//
+let data1 = { "Name": ["Apples", "Mango", "Banana", "Pear"] ,
+            "Count": [21, 5, 30, 10],
+             "Price": [200, 300, 40, 250] }
+
+let df1 = new dfd.DataFrame(data1)
+let sub_df = df.loc({ rows: ["0:2"], columns: ["Name", "Price"] })
+sub_df.print()
     </script>
 </body>
 
