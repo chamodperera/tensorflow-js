@@ -6,7 +6,8 @@
 
     <!-- tensorflow-js -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
-    <script src="script.js"></script>
+    
+    <script src="src\script.js"></script>
 
     <!-- danfojs -->
     <script src="https://cdn.jsdelivr.net/npm/danfojs@0.1.1/dist/index.min.js"></script>
@@ -16,7 +17,7 @@
 <body>
     <h1>Tensorflow test</h1>
     <div id="plot_div"></div>
-    <script>
+    <!--<script>
          dfd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv")
 
             .then(df => {
@@ -49,7 +50,34 @@ let data1 = { "Name": ["Apples", "Mango", "Banana", "Pear"] ,
 let df1 = new dfd.DataFrame(data1)
 let sub_df = df.loc({ rows: ["0:2"], columns: ["Name", "Price"] })
 sub_df.print()
-    </script>
+    </script> -->
+<script>
+async function load_process_data() {
+
+    let dftrain = await dfd.read_csv("src/dataset/titanic.csv");
+    let dftest = await dfd.read_csv("src/dataset/test.csv");
+
+    dftrain.ctypes.print();
+
+    let Xtrain = dftrain['Survived'];
+    let Ytrain = dftest['Survived'];
+    
+    let encoder = new dfd.LabelEncoder()
+    let cols = ["Sex"]
+    cols.forEach(col => {
+    encoder.fit(dftrain[col])
+    enc_val = encoder.transform(dftrain[col])
+    dftrain.addColumn({ column: col, values: enc_val, inplace: true })
+    })
+
+    dftrain.ctypes.print();
+
+}
+
+load_process_data()
+
+
+</script>
 </body>
 
 </html>
