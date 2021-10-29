@@ -1,0 +1,23 @@
+{
+  "name": "tensorflow",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chamodperera/tensorflow-js.git"
+  },
+  "author": "chamod perera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chamodperera/tensorflow-js/issues"
+  },
+  "homepage": "https://github.com/chamodperera/tensorflow-js#readme",
+  "dependencies": {
+    "@tensorflow/tfjs": "^3.11.0"
+  }
+}
